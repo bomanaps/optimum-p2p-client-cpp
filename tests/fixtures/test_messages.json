@@ -1,0 +1,15 @@
+[
+  {
+    "MessageID": "test-message-1",
+    "Topic": "test-topic",
+    "Message": "Hello World",
+    "SourceNodeID": "test-node-1"
+  },
+  {
+    "MessageID": "test-message-2",
+    "Topic": "test-topic",
+    "Message": "Test message 2",
+    "SourceNodeID": "test-node-2"
+  }
+]
+

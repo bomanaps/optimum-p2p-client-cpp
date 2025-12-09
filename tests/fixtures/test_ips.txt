@@ -1,0 +1,9 @@
+# Test IP addresses for multi-node tests
+# Format: one IP address per line
+# Comments start with #
+
+127.0.0.1:33221
+127.0.0.1:33222
+127.0.0.1:33223
+127.0.0.1:33224
+

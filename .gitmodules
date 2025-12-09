@@ -1,0 +1,4 @@
+[submodule "go-reference"]
+	path = go-reference
+	url = https://github.com/getoptimum/optimum-dev-setup-guide.git
+

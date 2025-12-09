@@ -1,0 +1,52 @@
+{
+  "scenarios": [
+    {
+      "name": "single_message_publish",
+      "description": "Publish a single message and verify delivery",
+      "topic": "test-topic-1",
+      "message": "Hello World",
+      "expected_receivers": 1,
+      "timeout_ms": 5000
+    },
+    {
+      "name": "multiple_messages",
+      "description": "Publish multiple messages with delay",
+      "topic": "test-topic-2",
+      "messages": [
+        "Message 1",
+        "Message 2",
+        "Message 3"
+      ],
+      "delay_ms": 100,
+      "expected_receivers": 1,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "multi_node_publish",
+      "description": "Publish to multiple nodes concurrently",
+      "topic": "test-topic-3",
+      "message": "Multi-node test",
+      "node_count": 4,
+      "expected_receivers": 4,
+      "timeout_ms": 15000
+    },
+    {
+      "name": "proxy_workflow",
+      "description": "Full proxy workflow: REST subscribe + gRPC stream + REST publish",
+      "topic": "proxy-topic-1",
+      "message": "Proxy test message",
+      "threshold": 0.7,
+      "timeout_ms": 10000
+    },
+    {
+      "name": "stress_test",
+      "description": "High-volume message publishing",
+      "topic": "stress-topic",
+      "message_count": 100,
+      "delay_ms": 10,
+      "expected_receivers": 4,
+      "timeout_ms": 30000
+    }
+  ]
+}
+

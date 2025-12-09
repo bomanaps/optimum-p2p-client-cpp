@@ -1,0 +1,68 @@
+# Build directories
+build/
+_build/
+cmake-build-*/
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+
+# Generated protobuf files
+proto/generated/
+*.pb.cc
+*.pb.h
+*_grpc.pb.cc
+*_grpc.pb.h
+
+# Test outputs
+test_outputs/
+*.log
+*.tsv
+*.csv
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
