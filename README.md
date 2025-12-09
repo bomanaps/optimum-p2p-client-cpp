@@ -217,9 +217,6 @@ git submodule update --init --recursive
 4. Follow C++17 best practices
 5. Current focus: Phase 2 implementation guided by Phase 1 tests
 
-## License
-
-[Add license information]
 
 ## Related Projects
 
