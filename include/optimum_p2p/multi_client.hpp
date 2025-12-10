@@ -25,6 +25,12 @@ public:
     void SetOutputFile(const std::string& filename);
     
 private:
+    void PublishToNode(const std::string& address,
+                      const std::string& topic,
+                      const std::vector<uint8_t>& data,
+                      int count,
+                      std::chrono::milliseconds delay);
+    
     std::vector<std::string> addresses_;
     std::string output_file_;
     std::mutex output_mutex_;
@@ -47,6 +53,8 @@ public:
     void SetTraceOutputFile(const std::string& filename);
     
 private:
+    void HandleMessage(const std::string& address, const P2PMessage& msg);
+    
     std::vector<std::unique_ptr<P2PClient>> clients_;
     std::vector<std::string> addresses_;
     std::function<void(const std::string&, const P2PMessage&)> data_callback_;

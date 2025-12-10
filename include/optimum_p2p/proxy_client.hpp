@@ -39,6 +39,7 @@ private:
     std::string grpc_address_;
     std::unique_ptr<proto::ProxyStream::Stub> stub_;
     std::shared_ptr<grpc::Channel> channel_;
+    std::unique_ptr<grpc::ClientContext> context_;
     std::unique_ptr<grpc::ClientReaderWriter<proto::ProxyMessage, proto::ProxyMessage>> stream_;
     
     // REST API helpers

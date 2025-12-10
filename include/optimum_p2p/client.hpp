@@ -36,8 +36,11 @@ public:
     void Shutdown();
 
 private:
+    void ReceiveLoop(); // Internal receive loop running in separate thread
+    
     std::unique_ptr<proto::CommandStream::Stub> stub_;
     std::shared_ptr<grpc::Channel> channel_;
+    std::unique_ptr<grpc::ClientContext> context_;
     std::unique_ptr<grpc::ClientReaderWriter<proto::Request, proto::Response>> stream_;
     std::thread receive_thread_;
     std::atomic<bool> running_;

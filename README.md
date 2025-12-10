@@ -4,9 +4,9 @@ C/C++ implementation of the mump2p client libraries, ported from the Go implemen
 
 ## Overview
 
-This repository contains the C/C++ port of the mump2p client libraries originally written in Go. Currently in **Phase 1: Test Generation**.
+This repository contains the C/C++ port of the mump2p client libraries originally written in Go.
 
-The implementation will provide:
+The implementation provides:
 
 - **P2P Client**: Direct connection to P2P nodes via gRPC
 - **Multi-Node Clients**: Concurrent publishing and subscription across multiple nodes
@@ -29,7 +29,7 @@ optimum-p2p-client-cpp/
 │       ├── proxy_client.hpp
 │       ├── types.hpp
 │       └── utils.hpp
-├── src/                         # C++ implementation (Phase 2)
+├── src/                         # C++ implementation
 │   ├── client.cpp
 │   ├── multi_client.cpp
 │   ├── proxy_client.cpp
@@ -38,7 +38,7 @@ optimum-p2p-client-cpp/
 │   ├── p2p_stream.proto
 │   ├── proxy_stream.proto
 │   └── CMakeLists.txt
-├── tests/                       # Test suite (Phase 1)
+├── tests/                       # Test suite
 │   ├── unit/                   # Unit tests
 │   ├── integration/            # Integration tests
 │   ├── e2e/                    # End-to-end tests
@@ -50,8 +50,6 @@ optimum-p2p-client-cpp/
 ## Prerequisites
 
 ### Required Dependencies
-
-**Note:** Even for Phase 1, the build system requires Phase 2 dependencies because tests link against the library. These will be used when implementing Phase 2.
 
 - **CMake** >= 3.15
 - **C++17** compatible compiler (GCC 7+, Clang 5+)
@@ -67,41 +65,46 @@ optimum-p2p-client-cpp/
 - **libbase58**: Base58 encoding
 - **spdlog**: Logging library
 - **Catch2**: Alternative testing framework
-- **pybind11** >= 2.6 (for Python bindings - Phase 3)
+- **pybind11** >= 2.6 (for Python bindings)
 
 ## Building
 
-### Phase 1: Build and Run Tests
+### Build and Run Tests
 
-**Step 1: Create build directory**
+#### Step 1: Create build directory
+
 ```bash
 cd optimum-p2p-client-cpp
 mkdir -p build
 cd build
 ```
 
-**Step 2: Configure CMake**
+#### Step 2: Configure CMake
+
 ```bash
 cmake .. -DBUILD_TESTS=ON
 ```
 
-**Step 3: Build unit tests**
+#### Step 3: Build unit tests
+
 ```bash
 make test_utils test_utils_hex
 ```
 
-**Step 4: Run unit tests**
+#### Step 4: Run unit tests
+
 ```bash
 ./tests/unit/test_utils
 ./tests/unit/test_utils_hex
 ```
 
-**Or use CTest:**
+Or use CTest:
+
 ```bash
 ctest --output-on-failure -R "test_utils"
 ```
 
-### Phase 2: Build Library (Future)
+### Build Library
 
 ```bash
 mkdir build && cd build
@@ -109,11 +112,12 @@ cmake ..
 make
 ```
 
-## Testing (Phase 1)
+## Testing
 
 ### Quick Start: Run All Unit Tests
 
 From the repository root:
+
 ```bash
 cd build
 cmake .. -DBUILD_TESTS=ON
@@ -123,14 +127,16 @@ ctest --output-on-failure
 
 ### Unit Tests (Detailed)
 
-**Build and run individual test:**
+Build and run individual test:
+
 ```bash
 cd build
 make test_utils
 ./tests/unit/test_utils
 ```
 
-**Run with verbose output:**
+Run with verbose output:
+
 ```bash
 ./tests/unit/test_utils --gtest_color=yes --gtest_output=xml
 ```
@@ -175,25 +181,39 @@ make test_go_vs_cpp
 ./tests/comparison/test_go_vs_cpp
 ```
 
-## Usage (Phase 2 - Future)
+## Usage
 
-Implementation examples will be available after Phase 2 completion. See `PORTING_GUIDELINE.md` for planned API structure.
+### C++ Example
+
+```cpp
+#include "optimum_p2p/client.hpp"
+
+int main() {
+    optimum_p2p::P2PClient client("127.0.0.1:33221");
+    
+    // Subscribe to topic
+    client.Subscribe("mytopic");
+    
+    // Set message callback
+    client.SetMessageCallback([](const optimum_p2p::P2PMessage& msg) {
+        std::cout << "Received: " << std::string(msg.message.begin(), msg.message.end()) << std::endl;
+    });
+    
+    // Publish message
+    std::vector<uint8_t> data = {'H', 'e', 'l', 'l', 'o'};
+    client.Publish("mytopic", data);
+    
+    // Keep running
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+    
+    client.Shutdown();
+    return 0;
+}
+```
 
 ## Development
 
-### Porting Status
-
-This is an active porting project following a test-driven approach. See `PORTING_GUIDELINE.md` for the complete porting strategy and `PORTING_QUICK_REFERENCE.md` for a quick overview.
-
-### Current Phase
-
-- [x] **Phase 1: Test Generation** - ✅ COMPLETE
-- [ ] Phase 2: C/C++ Implementation
-- [ ] Phase 3: Python Bindings
-- [ ] Phase 4: Integration & Validation
-
-
-Tests are ready to guide Phase 2 implementation.
+This project follows a test-driven development approach. See `PORTING_GUIDELINE.md` for the complete porting strategy and `PORTING_QUICK_REFERENCE.md` for a quick overview.
 
 ## Reference Implementation
 
@@ -215,8 +235,6 @@ git submodule update --init --recursive
 2. Ensure all tests pass before submitting
 3. Maintain compatibility with the Go implementation
 4. Follow C++17 best practices
-5. Current focus: Phase 2 implementation guided by Phase 1 tests
-
 
 ## Related Projects
 

@@ -183,8 +183,8 @@ TEST_F(UtilsTest, SHA256Hex_LargeData) {
     std::string hash = SHA256Hex(data);
     
     EXPECT_EQ(hash.length(), 64);
-    // Known hash for 1024 bytes of 0x42
-    EXPECT_EQ(hash, "a3a5e715f0cc574a73c3f9bebb6bc24f32ffd5ee258b1dbf262f18c5e7e0e7d2");
+    // Known hash for 1024 bytes of 0x42 (verified with Python hashlib)
+    EXPECT_EQ(hash, "9b6ce55f379e9771551de6939556a7e6b949814ae27c2f5cfd5dbeb378ce7c2a");
 }
 
 // Test ParseMessage with valid JSON
